@@ -1,0 +1,283 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      9724,        274]
+NotebookOptionsPosition[      9083,        247]
+NotebookOutlinePosition[      9447,        263]
+CellTagsIndexPosition[      9404,        260]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Denreleq", "[", 
+    RowBox[{"alpha_", ",", "beta_", ",", "mu_", ",", "sigma_"}], "]"}], ":=", 
+   
+   RowBox[{"1", "/", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"alpha", "*", 
+           RowBox[{"(", 
+            RowBox[{"beta", "^", "2"}], ")"}], "*", 
+           RowBox[{"(", 
+            RowBox[{"sigma", "^", "2"}], ")"}]}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"2", "*", 
+           RowBox[{"(", 
+            RowBox[{"2", "-", "alpha"}], ")"}]}], ")"}]}], "-", 
+        RowBox[{"beta", "*", "mu"}]}], "]"}]}], ")"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Denrelcondition", "[", 
+    RowBox[{"alpha_", ",", "beta_", ",", "mu_", ",", "sigma_"}], "]"}], ":=", 
+   
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"alpha", "*", 
+       RowBox[{"(", 
+        RowBox[{"beta", "^", "2"}], ")"}], "*", 
+       RowBox[{"(", 
+        RowBox[{"sigma", "^", "2"}], ")"}]}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{"2", "*", 
+       RowBox[{"(", 
+        RowBox[{"2", "-", "alpha"}], ")"}]}], ")"}]}], "-", 
+    RowBox[{"beta", "*", "mu"}]}]}], ";"}]}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Denreleq", "[", 
+      RowBox[{"alpha", ",", "beta", ",", "mu", ",", "sigma"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"alpha", ",", "0", ",", "1"}], "}"}], ",", " ", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"beta", ",", "3"}], "}"}], ",", "1", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"mu", ",", "0.5"}], "}"}], ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"sigma", ",", "1"}], "}"}], ",", "0", ",", "2"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.815114428577401*^9, 3.8151145536219673`*^9}, {
+  3.815114589858232*^9, 3.8151146285486403`*^9}, {3.8151146718192453`*^9, 
+  3.815114713696629*^9}, {3.81511477594921*^9, 3.81511481269593*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`beta$$ = 3.08, $CellContext`mu$$ = 
+    0.096, $CellContext`sigma$$ = 2., Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"\:540d\:79f0\:672a\:5b9a\:7fa9\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`beta$$], 3}, 1, 10}, {{
+       Hold[$CellContext`mu$$], 0.5}, 0, 1}, {{
+       Hold[$CellContext`sigma$$], 1}, 0, 2}}, Typeset`size$$ = {
+    360., {117., 122.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`beta$12809$$ = 
+    0, $CellContext`mu$12810$$ = 0, $CellContext`sigma$12811$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`beta$$ = 3, $CellContext`mu$$ = 
+        0.5, $CellContext`sigma$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`beta$$, $CellContext`beta$12809$$, 0], 
+        Hold[$CellContext`mu$$, $CellContext`mu$12810$$, 0], 
+        Hold[$CellContext`sigma$$, $CellContext`sigma$12811$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[
+        $CellContext`Denreleq[$CellContext`alpha, $CellContext`beta$$, \
+$CellContext`mu$$, $CellContext`sigma$$], {$CellContext`alpha, 0, 1}, 
+        PlotRange -> {0, 1}], 
+      "Specifications" :> {{{$CellContext`beta$$, 3}, 1, 
+         10}, {{$CellContext`mu$$, 0.5}, 0, 1}, {{$CellContext`sigma$$, 1}, 0,
+          2}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{405., {230., 235.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.815114568221858*^9, 3.815114598855577*^9}, 
+   3.815114629303776*^9, {3.815114698981015*^9, 3.8151147143478727`*^9}, 
+   3.815114782059559*^9, 3.815114813250976*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.8151144146905813`*^9, 3.815114414946755*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Reduce", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"alpha", "*", 
+              RowBox[{"(", 
+               RowBox[{"beta", "^", "2"}], ")"}], "*", 
+              RowBox[{"(", 
+               RowBox[{"sd", "^", "2"}], ")"}]}], ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"2", "*", 
+              RowBox[{"(", 
+               RowBox[{"2", "-", "alpha"}], ")"}]}], ")"}]}], "-", 
+           RowBox[{"beta", "*", "mu"}]}], "]"}]}], ")"}]}], "\[Equal]", 
+      RowBox[{"1", "/", "2"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"0", "<", "alpha", "<", "1"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"beta", ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"sd", "\[Equal]", "1"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"mu", "\[Equal]", 
+      RowBox[{"1", "/", "2"}]}]}], "\[IndentingNewLine]", "}"}], ",", 
+   "\[IndentingNewLine]", "beta"}], "]"}]], "Input",
+ CellChangeTimes->{{3.79473046929804*^9, 3.794730593481771*^9}, {
+  3.794730626227057*^9, 3.7947306804761877`*^9}, {3.7951569354775*^9, 
+  3.795156963955474*^9}, {3.815114231972548*^9, 3.8151143613854933`*^9}, {
+  3.815114398891721*^9, 3.81511440717052*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"0", "<", "alpha", "<", "1"}], "&&", 
+  RowBox[{"mu", "\[Equal]", 
+   FractionBox["1", "2"]}], "&&", 
+  RowBox[{"sd", "\[Equal]", "1"}], "&&", 
+  RowBox[{"beta", "\[Equal]", 
+   FractionBox[
+    RowBox[{"2", "-", "alpha"}], "alpha"]}]}]], "Output",
+ CellChangeTimes->{
+  3.794730516479476*^9, 3.794730595378491*^9, 3.7947306280562687`*^9, {
+   3.794730663504675*^9, 3.794730681247903*^9}, {3.795156937577148*^9, 
+   3.795156964635028*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Reduce", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"1", "/", 
+       RowBox[{"(", 
+        RowBox[{"1", "+", 
+         RowBox[{"Exp", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"alpha", "*", 
+              RowBox[{"(", 
+               RowBox[{"beta", "^", "2"}], ")"}], "*", 
+              RowBox[{"(", 
+               RowBox[{"sd", "^", "2"}], ")"}]}], ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"2", "*", 
+              RowBox[{"(", 
+               RowBox[{"2", "-", "alpha"}], ")"}]}], ")"}]}], "-", 
+           RowBox[{"beta", "*", "mu"}]}], "]"}]}], ")"}]}], "\[LessEqual]", 
+      RowBox[{"1", "/", "2"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"0", "<", "alpha", "<", "1"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"beta", ">", "0"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"sd", "\[Equal]", "1"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"mu", "\[Equal]", 
+      RowBox[{"1", "/", "100"}]}]}], "\[IndentingNewLine]", "}"}], ",", 
+   "\[IndentingNewLine]", "beta"}], "]"}]], "Input",
+ CellChangeTimes->{{3.79473046929804*^9, 3.794730593481771*^9}, {
+  3.794730626227057*^9, 3.7947306804761877`*^9}, {3.7951569354775*^9, 
+  3.795156963955474*^9}, {3.7951570751215353`*^9, 3.795157110128559*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"0", "<", "alpha", "<", "1"}], "&&", 
+  RowBox[{"mu", "\[Equal]", 
+   FractionBox["1", "100"]}], "&&", 
+  RowBox[{"sd", "\[Equal]", "1"}], "&&", 
+  RowBox[{"beta", "\[GreaterEqual]", 
+   FractionBox[
+    RowBox[{"2", "-", "alpha"}], 
+    RowBox[{"50", " ", "alpha"}]]}]}]], "Output",
+ CellChangeTimes->{{3.795157076883808*^9, 3.795157110863552*^9}}]
+}, Open  ]]
+},
+WindowSize->{863, 787},
+WindowMargins->{{Automatic, 23}, {9, Automatic}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (2014\:5e747\
+\:67089\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 1272, 41, 80, "Input"],
+Cell[CellGroupData[{
+Cell[1854, 65, 1001, 27, 46, "Input"],
+Cell[2858, 94, 2336, 44, 516, "Output"]
+}, Open  ]],
+Cell[5209, 141, 174, 3, 80, "Input"],
+Cell[CellGroupData[{
+Cell[5408, 148, 1401, 33, 148, "Input"],
+Cell[6812, 183, 473, 12, 50, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7322, 200, 1359, 32, 148, "Input"],
+Cell[8684, 234, 383, 10, 50, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
