@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    109923,       2605]
-NotebookOptionsPosition[    107510,       2519]
-NotebookOutlinePosition[    107876,       2535]
-CellTagsIndexPosition[    107833,       2532]
+NotebookDataLength[    121046,       2832]
+NotebookOptionsPosition[    118111,       2734]
+NotebookOutlinePosition[    118477,       2750]
+CellTagsIndexPosition[    118434,       2747]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -47,7 +47,7 @@ denoted by p. In particular, the probability of shifting to the more \
 preferable option is pH, while that of shifting to less preferrable option is \
 pL, where pH > pL. 
 
-We assume thar the inner beliefs can change by choosing the risky \
+We assume that the inner beliefs can change by choosing the risky \
 alternative. We define that the per-capita probability of getting higher \
 preference to the risky alternative is \[OpenCurlyDoubleQuote]e\
 \[CloseCurlyDoubleQuote] ($0 \\leq e \\leq 1$), that is, $R2 = eR$, and the \
@@ -75,12 +75,13 @@ Secondly, I will show how social influence on the choice probabilty (i.e. pL \
 and pH) rescue the system from getting stuck in the safe alternative.\
 \>", "Text",
  CellChangeTimes->CompressedData["
-1:eJxTTMoPSmViYGAQAWIQ/XL2oTMiVW8cm2ZtewKi3x168BNEd7yy/w+iHYw4
+1:eJxTTMoPSmViYGAQBWIQ/XL2oTMiVW8cm2ZtewKi3x168BNEd7yy/w+iHYw4
 WUSB9KRTjiIgelPSQwkQPW/DXSsQfcPMzQlE37I7CKafu1R7guiGkMM+IPrB
 o8pgEH36869QEL1yyoNIEP0lMT8XRM/haaoC0TsyVoHpCznvG8H2+K6YDqJL
 xNbOBtEmz23mgujHl6O3gWiGWxanQbSL36TzYPOSOt6C6Hf7f30C0e66Ap9B
 NE/Yll8g+kl72H8Q/dLFhFsMSHv9qOAD0Z9UF8iDaB9LZgUQfW3XbHUQzX6o
-0gBEP+7SNQXRCe1frEE0x7EbLiCah1MmBEQDANilmzQ=
+0gBEP+7SNQXRCe1frEE0x7EbLiCah1MmBESbFC26rASkA7TXgGkAzY6i3A==
+
   "]]
 }, Open  ]],
 
@@ -719,7 +720,7 @@ Cell[BoxData[
     Typeset`specs$$ = {{{
        Hold[$CellContext`pH$$], 0.5}, 0, 1}, {{
        Hold[$CellContext`pL$$], 0.1}, 0, 1}}, Typeset`size$$ = {
-    360., {105., 110.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    360., {109., 113.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
     Typeset`skipInitDone$$ = True, $CellContext`pH$2019$$ = 
     0, $CellContext`pL$2020$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
@@ -739,7 +740,7 @@ $CellContext`pL$$, 30], {$CellContext`e, 0, 1}, PlotLegends -> Automatic,
       "Specifications" :> {{{$CellContext`pH$$, 0.5}, 0, 
          1}, {{$CellContext`pL$$, 0.1}, 0, 1}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{405., {163., 168.}},
+     ImageSizeCache->{405., {167., 172.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -2094,7 +2095,221 @@ $CellContext`Ns2[$CellContext`t],
    3.797663687866571*^9}, 3.79766379868223*^9, {3.797663907926386*^9, 
    3.7976639291006823`*^9}, 3.797664000593646*^9, 3.797671540738182*^9, 
    3.797671736736475*^9, 3.797672536415646*^9, 3.797672678536687*^9, 
-   3.822105837062632*^9}]
+   3.822105837062632*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NDSolve", "::", "ndnl"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({t, 0.`, length}\\)\[NoBreak]\:306e\:7d42\
+\:70b9\[NoBreak]\\!\\(length\\)\[NoBreak]\:306f\:5b9f\:6570\:3067\:306f\:3042\
+\:308a\:307e\:305b\:3093\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NDSolve/ndnl\\\", ButtonNote -> \
+\\\"NDSolve::ndnl\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.822623252275103*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ReplaceAll", "::", "reps"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(NDSolve[\\(\\(\\(\\({\\(\\(\\(\\(NS[t]\
+\\)\\) \[Equal] \\(\\(\\(\\(Ns1[t]\\)\\) + \\(\\(Ns2[t]\\)\\)\\)\\)\\)\\), \
+\\(\\(\\(\\(PR1[t]\\)\\) \[Equal] pL\\)\\), \\(\\(\\(\\(PS1[t]\\)\\) \[Equal] \
+pH\\)\\), \\(\\(\\(\\(PR2[t]\\)\\) \[Equal] pH\\)\\), \
+\\(\\(\\(\\(PS2[t]\\)\\) \[Equal] pL\\)\\), \
+\\(\\(\\(\\(\\(\\(\\*SuperscriptBox[\\\"Ns1\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]]\\)\\)[t]\\)\\) \[Equal] \\(\\(\\(\\(\\(\\(-\\(\
+\\(Ns1[t]\\)\\)\\)\\)\\\\ \\(\\(PR1[t]\\)\\)\\)\\) + \\(\\(\\(\\((1 + \
+\\(\\(Times[\\(\\(\[LeftSkeleton] 2 \[RightSkeleton]\\)\\)]\\)\\))\\)\\)\\\\ \
+\\(\\(NR[t]\\)\\)\\\\ \\(\\(PS1[t]\\)\\)\\)\\)\\)\\)\\)\\), \
+\\(\\(\\(\\(\\(\\(\\*SuperscriptBox[\\\"Ns2\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]]\\)\\)[t]\\)\\) \[Equal] \\(\\(\\(\\(\\(\\(-\\(\
+\\(Ns2[t]\\)\\)\\)\\)\\\\ \\(\\(PR2[t]\\)\\)\\)\\) + \\(\\(e\\\\ \
+\\(\\(NR[t]\\)\\)\\\\ \\(\\(PS2[t]\\)\\)\\)\\)\\)\\)\\)\\), \
+\\(\\(\\(\\(\\(\\(\\*SuperscriptBox[\\\"NR\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]]\\)\\)[t]\\)\\) \[Equal] \
+\\(\\(\\(\\(\\(\\(Ns1[t]\\)\\)\\\\ \\(\\(PR1[t]\\)\\)\\)\\) + \
+\\(\\(\\(\\(Ns2[t]\\)\\)\\\\ \\(\\(PR2[t]\\)\\)\\)\\) - \\(\\(\\(\\((1 + \
+\\(\\(Times[\\(\\(\[LeftSkeleton] 2 \[RightSkeleton]\\)\\)]\\)\\))\\)\\)\\\\ \
+\\(\\(NR[t]\\)\\)\\\\ \\(\\(PS1[t]\\)\\)\\)\\) - \\(\\(e\\\\ \
+\\(\\(NR[t]\\)\\)\\\\ \\(\\(PS2[t]\\)\\)\\)\\)\\)\\)\\)\\), \
+\\(\\(\\(\\(Ns1[0]\\)\\) \[Equal] 5\\)\\), \\(\\(\\(\\(Ns2[0]\\)\\) \[Equal] \
+5\\)\\), \\(\\(\\(\\(NR[0]\\)\\) \[Equal] 10\\)\\)}\\)\\), \\(\\({Ns1, Ns2, \
+NR}\\)\\), \\(\\({t, 0, length}\\)\\)\\)\\)]\\)}\\)\[NoBreak]\:306f\:7f6e\
+\:63db\:5247\:30ea\:30b9\:30c8\:3042\:308b\:3044\:306f\:6709\:52b9\:306a\:30c7\
+\:30a3\:30b9\:30d1\:30c3\:30c1\:30c6\:30fc\:30d6\:30eb\:3067\:306f\:306a\:3044\
+\:305f\:3081\:ff0c\:7f6e\:63db\:306b\:4f7f\:7528\:3067\:304d\:307e\:305b\:3093\
+\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/ReplaceAll/reps\\\", ButtonNote -> \
+\\\"ReplaceAll::reps\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.8226232523647013`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Plot", "::", "plln"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({t, 0, length}\\)\[NoBreak]\:306e\:7bc4\
+\:56f2\:6307\:5b9a\:5024\[NoBreak]\\!\\(length\\)\[NoBreak]\:306f\:6a5f\:68b0\
+\:30b5\:30a4\:30ba\:306e\:5b9f\:6570\:3067\:306f\:3042\:308a\:307e\:305b\:3093\
+\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/plln\\\", ButtonNote -> \
+\\\"Plot::plln\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.82262325259077*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NDSolve", "::", "ndnl"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({t, 0.`, length}\\)\[NoBreak]\:306e\:7d42\
+\:70b9\[NoBreak]\\!\\(length\\)\[NoBreak]\:306f\:5b9f\:6570\:3067\:306f\:3042\
+\:308a\:307e\:305b\:3093\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/NDSolve/ndnl\\\", ButtonNote -> \
+\\\"NDSolve::ndnl\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.822623252603689*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ReplaceAll", "::", "reps"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({\\(NDSolve[\\(\\(\\(\\({\\(\\(\\(\\(NS[t]\
+\\)\\) \[Equal] \\(\\(\\(\\(Ns1[t]\\)\\) + \\(\\(Ns2[t]\\)\\)\\)\\)\\)\\), \
+\\(\\(\\(\\(PR1[t]\\)\\) \[Equal] pL\\)\\), \\(\\(\\(\\(PS1[t]\\)\\) \[Equal] \
+pH\\)\\), \\(\\(\\(\\(PR2[t]\\)\\) \[Equal] pH\\)\\), \
+\\(\\(\\(\\(PS2[t]\\)\\) \[Equal] pL\\)\\), \
+\\(\\(\\(\\(\\(\\(\\*SuperscriptBox[\\\"Ns1\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]]\\)\\)[t]\\)\\) \[Equal] \\(\\(\\(\\(\\(\\(-\\(\
+\\(Ns1[t]\\)\\)\\)\\)\\\\ \\(\\(PR1[t]\\)\\)\\)\\) + \\(\\(\\(\\((1 + \
+\\(\\(Times[\\(\\(\[LeftSkeleton] 2 \[RightSkeleton]\\)\\)]\\)\\))\\)\\)\\\\ \
+\\(\\(NR[t]\\)\\)\\\\ \\(\\(PS1[t]\\)\\)\\)\\)\\)\\)\\)\\), \
+\\(\\(\\(\\(\\(\\(\\*SuperscriptBox[\\\"Ns2\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]]\\)\\)[t]\\)\\) \[Equal] \\(\\(\\(\\(\\(\\(-\\(\
+\\(Ns2[t]\\)\\)\\)\\)\\\\ \\(\\(PR2[t]\\)\\)\\)\\) + \\(\\(e\\\\ \
+\\(\\(NR[t]\\)\\)\\\\ \\(\\(PS2[t]\\)\\)\\)\\)\\)\\)\\)\\), \
+\\(\\(\\(\\(\\(\\(\\*SuperscriptBox[\\\"NR\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]]\\)\\)[t]\\)\\) \[Equal] \
+\\(\\(\\(\\(\\(\\(Ns1[t]\\)\\)\\\\ \\(\\(PR1[t]\\)\\)\\)\\) + \
+\\(\\(\\(\\(Ns2[t]\\)\\)\\\\ \\(\\(PR2[t]\\)\\)\\)\\) - \\(\\(\\(\\((1 + \
+\\(\\(Times[\\(\\(\[LeftSkeleton] 2 \[RightSkeleton]\\)\\)]\\)\\))\\)\\)\\\\ \
+\\(\\(NR[t]\\)\\)\\\\ \\(\\(PS1[t]\\)\\)\\)\\) - \\(\\(e\\\\ \
+\\(\\(NR[t]\\)\\)\\\\ \\(\\(PS2[t]\\)\\)\\)\\)\\)\\)\\)\\), \
+\\(\\(\\(\\(Ns1[0]\\)\\) \[Equal] 5\\)\\), \\(\\(\\(\\(Ns2[0]\\)\\) \[Equal] \
+5\\)\\), \\(\\(\\(\\(NR[0]\\)\\) \[Equal] 10\\)\\)}\\)\\), \\(\\({Ns1, Ns2, \
+NR}\\)\\), \\(\\({t, 0, length}\\)\\)\\)\\)]\\)}\\)\[NoBreak]\:306f\:7f6e\
+\:63db\:5247\:30ea\:30b9\:30c8\:3042\:308b\:3044\:306f\:6709\:52b9\:306a\:30c7\
+\:30a3\:30b9\:30d1\:30c3\:30c1\:30c6\:30fc\:30d6\:30eb\:3067\:306f\:306a\:3044\
+\:305f\:3081\:ff0c\:7f6e\:63db\:306b\:4f7f\:7528\:3067\:304d\:307e\:305b\:3093\
+\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/ReplaceAll/reps\\\", ButtonNote -> \
+\\\"ReplaceAll::reps\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.822623252749228*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ParametricPlot", "::", "plln"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({t, 0, length}\\)\[NoBreak]\:306e\:7bc4\
+\:56f2\:6307\:5b9a\:5024\[NoBreak]\\!\\(length\\)\[NoBreak]\:306f\:6a5f\:68b0\
+\:30b5\:30a4\:30ba\:306e\:5b9f\:6570\:3067\:306f\:3042\:308a\:307e\:305b\:3093\
+\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/plln\\\", ButtonNote -> \
+\\\"ParametricPlot::plln\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.822623254003046*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ParametricPlot", "::", "plln"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({t, 0, length}\\)\[NoBreak]\:306e\:7bc4\
+\:56f2\:6307\:5b9a\:5024\[NoBreak]\\!\\(length\\)\[NoBreak]\:306f\:6a5f\:68b0\
+\:30b5\:30a4\:30ba\:306e\:5b9f\:6570\:3067\:306f\:3042\:308a\:307e\:305b\:3093\
+\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/plln\\\", ButtonNote -> \
+\\\"ParametricPlot::plln\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.822623254944201*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Plot", "::", "plln"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({t, 0, length}\\)\[NoBreak]\:306e\:7bc4\
+\:56f2\:6307\:5b9a\:5024\[NoBreak]\\!\\(length\\)\[NoBreak]\:306f\:6a5f\:68b0\
+\:30b5\:30a4\:30ba\:306e\:5b9f\:6570\:3067\:306f\:3042\:308a\:307e\:305b\:3093\
+\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/plln\\\", ButtonNote -> \
+\\\"Plot::plln\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.822623255100751*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ParametricPlot", "::", "plln"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({t, 0, length}\\)\[NoBreak]\:306e\:7bc4\
+\:56f2\:6307\:5b9a\:5024\[NoBreak]\\!\\(length\\)\[NoBreak]\:306f\:6a5f\:68b0\
+\:30b5\:30a4\:30ba\:306e\:5b9f\:6570\:3067\:306f\:3042\:308a\:307e\:305b\:3093\
+\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/plln\\\", ButtonNote -> \
+\\\"ParametricPlot::plln\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.822623255276184*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:3053\:306e\:8a08\:7b97\:4e2d\:306b\:ff0c\[NoBreak]\\!\\(\
+\\*StyleBox[\\(ParametricPlot :: plln\\), \\\"MessageName\\\"]\\)\[NoBreak]\
+\:306e\:3053\:308c\:4ee5\:4e0a\:306e\:51fa\:529b\:306f\:8868\:793a\:3055\:308c\
+\:307e\:305b\:3093\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.822623255340291*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Plot", "::", "plln"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({t, 0, length}\\)\[NoBreak]\:306e\:7bc4\
+\:56f2\:6307\:5b9a\:5024\[NoBreak]\\!\\(length\\)\[NoBreak]\:306f\:6a5f\:68b0\
+\:30b5\:30a4\:30ba\:306e\:5b9f\:6570\:3067\:306f\:3042\:308a\:307e\:305b\:3093\
+\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/plln\\\", ButtonNote -> \
+\\\"Plot::plln\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.822623255499113*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\:3053\:306e\:8a08\:7b97\:4e2d\:306b\:ff0c\[NoBreak]\\!\\(\
+\\*StyleBox[\\(Plot :: plln\\), \\\"MessageName\\\"]\\)\[NoBreak]\:306e\:3053\
+\:308c\:4ee5\:4e0a\:306e\:51fa\:529b\:306f\:8868\:793a\:3055\:308c\:307e\:305b\
+\:3093\:ff0e \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.82262325554638*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -2539,71 +2754,83 @@ Cell[579, 22, 182, 4, 148, "Title"],
 Cell[764, 28, 139, 1, 30, "Text"],
 Cell[CellGroupData[{
 Cell[928, 33, 94, 1, 64, "Section"],
-Cell[1025, 36, 2920, 47, 372, "Text"]
+Cell[1025, 36, 2937, 48, 372, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3982, 88, 399, 5, 64, "Section"],
+Cell[3999, 89, 399, 5, 64, "Section"],
 Cell[CellGroupData[{
-Cell[4406, 97, 353, 4, 44, "Subsection"],
+Cell[4423, 98, 353, 4, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[4784, 105, 3107, 65, 182, "Input"],
-Cell[7894, 172, 2794, 76, 55, "Output"]
+Cell[4801, 106, 3107, 65, 182, "Input"],
+Cell[7911, 173, 2794, 76, 55, "Output"]
 }, Open  ]],
-Cell[10703, 251, 92, 1, 28, "Input"],
-Cell[10798, 254, 175, 2, 30, "Text"],
+Cell[10720, 252, 92, 1, 28, "Input"],
+Cell[10815, 255, 175, 2, 30, "Text"],
 Cell[CellGroupData[{
-Cell[10998, 260, 2420, 74, 107, "Input"],
-Cell[13421, 336, 885, 26, 50, "Output"],
-Cell[14309, 364, 571, 15, 50, "Output"]
+Cell[11015, 261, 2420, 74, 107, "Input"],
+Cell[13438, 337, 885, 26, 50, "Output"],
+Cell[14326, 365, 571, 15, 50, "Output"]
 }, Open  ]],
-Cell[14895, 382, 123, 1, 30, "Text"],
+Cell[14912, 383, 123, 1, 30, "Text"],
 Cell[CellGroupData[{
-Cell[15043, 387, 4149, 108, 177, "Input"],
-Cell[19195, 497, 1247, 22, 49, "Output"],
-Cell[20445, 521, 1247, 22, 49, "Output"],
-Cell[21695, 545, 1088, 19, 49, "Output"],
-Cell[22786, 566, 1088, 19, 49, "Output"]
+Cell[15060, 388, 4149, 108, 177, "Input"],
+Cell[19212, 498, 1247, 22, 49, "Output"],
+Cell[20462, 522, 1247, 22, 49, "Output"],
+Cell[21712, 546, 1088, 19, 49, "Output"],
+Cell[22803, 567, 1088, 19, 49, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[23911, 590, 218, 3, 35, "Subsubsection"],
+Cell[23928, 591, 218, 3, 35, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[24154, 597, 4370, 112, 218, "Input"],
-Cell[28527, 711, 3035, 56, 348, "Output"]
+Cell[24171, 598, 4370, 112, 218, "Input"],
+Cell[28544, 712, 3035, 56, 356, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[31635, 775, 585, 8, 64, "Section"],
-Cell[32223, 785, 31, 0, 21, "Subsection"],
+Cell[31652, 776, 585, 8, 64, "Section"],
+Cell[32240, 786, 31, 0, 21, "Subsection"],
 Cell[CellGroupData[{
-Cell[32279, 789, 180, 2, 44, "Subsection"],
+Cell[32296, 790, 180, 2, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[32484, 795, 19327, 429, 692, "Input"],
-Cell[51814, 1226, 390, 5, 28, "Output"],
-Cell[52207, 1233, 343, 4, 28, "Output"]
+Cell[32501, 796, 19327, 429, 692, "Input"],
+Cell[51831, 1227, 390, 5, 28, "Output"],
+Cell[52224, 1234, 343, 4, 28, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[52599, 1243, 284, 3, 44, "Subsection"],
-Cell[52886, 1248, 203, 4, 30, "Text"],
+Cell[52616, 1244, 284, 3, 44, "Subsection"],
+Cell[52903, 1249, 203, 4, 30, "Text"],
 Cell[CellGroupData[{
-Cell[53114, 1256, 19016, 423, 675, "Input"],
-Cell[72133, 1681, 483, 7, 28, "Output"],
-Cell[72619, 1690, 442, 6, 28, "Output"]
+Cell[53131, 1257, 19016, 423, 675, "Input"],
+Cell[72150, 1682, 483, 7, 28, "Output"],
+Cell[72636, 1691, 442, 6, 28, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[73110, 1702, 275, 3, 44, "Subsection"],
+Cell[73127, 1703, 275, 3, 44, "Subsection"],
 Cell[CellGroupData[{
-Cell[73410, 1709, 10738, 268, 624, "Input"],
-Cell[84151, 1979, 6253, 117, 246, "Output"]
+Cell[73427, 1710, 10738, 268, 590, "Input"],
+Cell[84168, 1980, 6253, 117, 246, "Output"],
+Cell[90424, 2099, 548, 11, 24, "Message"],
+Cell[90975, 2112, 2294, 36, 58, "Message"],
+Cell[93272, 2150, 595, 12, 24, "Message"],
+Cell[93870, 2164, 548, 11, 24, "Message"],
+Cell[94421, 2177, 2292, 36, 58, "Message"],
+Cell[96716, 2215, 616, 12, 24, "Message"],
+Cell[97335, 2229, 616, 12, 24, "Message"],
+Cell[97954, 2243, 596, 12, 24, "Message"],
+Cell[98553, 2257, 616, 12, 24, "Message"],
+Cell[99172, 2271, 621, 12, 24, "Message"],
+Cell[99796, 2285, 596, 12, 24, "Message"],
+Cell[100395, 2299, 610, 12, 24, "Message"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[90453, 2102, 118, 1, 44, "Subsection"],
-Cell[90574, 2105, 8265, 200, 403, "Input"],
-Cell[98842, 2307, 8628, 207, 403, "Input"]
+Cell[101054, 2317, 118, 1, 44, "Subsection"],
+Cell[101175, 2320, 8265, 200, 403, "Input"],
+Cell[109443, 2522, 8628, 207, 403, "Input"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
