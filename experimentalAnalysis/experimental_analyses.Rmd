@@ -20,7 +20,7 @@ library(tidyverse)
 library(cowplot)
 library(knitr)
 library(ggpubr)
-setwd("experimentalAnalysis")
+setwd("~/Dropbox/wataru/papers/RiskySocialLearning/experiment/overall_analysis")
 source("functions.R")
 ```
 

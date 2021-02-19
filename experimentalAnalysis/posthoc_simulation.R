@@ -129,7 +129,6 @@ initialExpextation = 0
 # simulation's setting
 horizon = 70 # = number of trials
 numOptions = 4
-length_of_the_last_block = 30
 # simulated model
 model = 'Decision-Biasing'
 
@@ -158,11 +157,12 @@ for(condition in conditionList) {
 		socialFrequency[,] = 1e-1
 		## Setting individual parameters
 		if(condition == 'Group') {
-			thisGroup <- sample(1:nrow(fit_SL00_riskID11_parameters), size=groupSize, replace=TRUE)
+			#thisGroup <- sample(1:nrow(fit_SL00_riskID11_parameters), size=groupSize, replace=TRUE)
 			# individual parameters are drawn from the fit global parameters
 			thisAlpha <- (mu_alpha_group + s_alpha_group * rnorm(groupSize, 0, 1)) %>%
 			  convert_alphaRaw_to_alpha()
 			thisBeta <- (mu_beta_group + s_beta_group * rnorm(groupSize, 0, 1)) %>% exp()
+			thisBeta[which(thisBeta>100)] <- 100
 			thisSigma <- (mu_soc_group + s_soc_group * rnorm(groupSize, 0, 1)) %>%
 			  convert_alphaRaw_to_alpha()
 			thisTheta <- mu_theta_group + s_theta_group * rnorm(groupSize, 0, 1)
@@ -175,6 +175,7 @@ for(condition in conditionList) {
 			thisAlpha <- (mu_alpha_indiv + s_alpha_indiv * rnorm(groupSize, 0, 1)) %>%
 			  convert_alphaRaw_to_alpha()
 			thisBeta <- (mu_beta_indiv + s_beta_indiv * rnorm(groupSize, 0, 1)) %>% exp()
+			thisBeta[which(thisBeta>100)] <- 100
 			thisTheta <- rep(0, groupSize)
 			thisSigma <- rep(0, groupSize)
 		}
@@ -474,7 +475,6 @@ initialExpextation = 0
 # simulation's setting
 horizon = 70 # = number of trials
 numOptions = 4
-length_of_the_last_block = 30
 # simulated model
 model = 'Decision-Biasing'
 
@@ -503,11 +503,12 @@ for(condition in conditionList) {
 		socialFrequency[,] = 1e-1
 		## Setting individual parameters
 		if(condition == 'Group') {
-			thisGroup <- sample(1:nrow(fit_SL00_riskID12_parameters), size=groupSize, replace=TRUE)
+			#thisGroup <- sample(1:nrow(fit_SL00_riskID12_parameters), size=groupSize, replace=TRUE)
 			# individual parameters are drawn from the fit global parameters
 			thisAlpha <- (mu_alpha_group + s_alpha_group * rnorm(groupSize, 0, 1)) %>%
 			  convert_alphaRaw_to_alpha()
 			thisBeta <- (mu_beta_group + s_beta_group * rnorm(groupSize, 0, 1)) %>% exp()
+			thisBeta[which(thisBeta>100)] <- 100
 			thisSigma <- (mu_soc_group + s_soc_group * rnorm(groupSize, 0, 1)) %>%
 			  convert_alphaRaw_to_alpha()
 			thisTheta <- mu_theta_group + s_theta_group * rnorm(groupSize, 0, 1)
@@ -520,6 +521,7 @@ for(condition in conditionList) {
 			thisAlpha <- (mu_alpha_indiv + s_alpha_indiv * rnorm(groupSize, 0, 1)) %>%
 			  convert_alphaRaw_to_alpha()
 			thisBeta <- (mu_beta_indiv + s_beta_indiv * rnorm(groupSize, 0, 1)) %>% exp()
+			thisBeta[which(thisBeta>100)] <- 100
 			thisTheta <- rep(0, groupSize)
 			thisSigma <- rep(0, groupSize)
 		}
@@ -527,7 +529,7 @@ for(condition in conditionList) {
 		for(t in 1:horizon){
 			# each individual chooses one option based on his/her choice probability
 			# choices[,t] = mapply(function(p1,p2){ sample(1:numOptions, 1, prob=c(p1,p2), replace=FALSE) }, netChoiceProb[1,t,], netChoiceProb[2,t,] )
-			choices[,t] = mapply(function(p1,p2,p3,p4){ sample(1:numOptions, 1, prob=c(p1,p2,p3,p4), replace=FALSE) }, netChoiceProb[1,t,], netChoiceProb[2,t,], netChoiceProb[3,t,], netChoiceProb[4,t,] )
+			choices[,t] = mapply(function(p1,p2,p3,p4){ sample(1:numOptions, size=1, prob=c(p1,p2,p3,p4), replace=TRUE) }, netChoiceProb[1,t,], netChoiceProb[2,t,], netChoiceProb[3,t,], netChoiceProb[4,t,] )
 			# each subject earns some money (if lucky)
 			# payoffs[,t] = payoffGenerateBinary(groupSize, choices[,t], rSure, rRisky, payoff_sureL, payoff_sureH, payoff_risky1, payoff_risky2)
 			payoffs[,t] = payoffGenerate4Arm_unsync(groupSize, choices[,t], rSure, rSure, rSure, rRisky, payoff_H1, payoff_L1, payoff_H2, payoff_L2, payoff_H3, payoff_L3, payoff_H4, payoff_L4)
@@ -574,7 +576,7 @@ for(condition in conditionList) {
 				## Softmax -- END
 				###############
 
-				if(model=='Decision-Biasing'){
+				if(model=='Decision-Biasing' & condition=='Group'){
   				netMatrix = apply(softmaxMatrix, 1, multiplyBeta, beta=(1-thisSigma)) %>% t() +
   				  apply(freqDepenMatrix, 1, multiplyBeta, beta=thisSigma) %>% t()
 				}else{
@@ -867,12 +869,14 @@ for(condition in conditionList) {
 			thisGroup <- sample(1:nrow(fit_parameters_group_SL00_mcmc), size=groupSize, replace=TRUE)
 			thisAlpha <- (mu_alpha_group + s_alpha_group * rnorm(groupSize, 0, 1)) %>% convert_alphaRaw_to_alpha()
 			thisBeta <- ( mu_beta_group + s_beta_group * rnorm(groupSize, 0, 1) ) %>% exp()
+			thisBeta[which(thisBeta>100)] <- 100
 			thisSigma <- (mu_soc_group + s_soc_group * rnorm(groupSize, 0, 1)) %>% convert_alphaRaw_to_alpha()
 			thisTheta <- mu_theta_group + s_theta_group * rnorm(groupSize, 0, 1)
 			
 		} else {
 			thisAlpha <- (mu_alpha_indiv + s_alpha_indiv * rnorm(groupSize, 0, 1)) %>% convert_alphaRaw_to_alpha()
 			thisBeta <- ( mu_beta_indiv + s_beta_indiv * rnorm(groupSize, 0, 1) ) %>% exp()
+			thisBeta[which(thisBeta>100)] <- 100
 			thisSigma <- rep(0, groupSize)
 			thisTheta <- rep(0, groupSize)
 		}

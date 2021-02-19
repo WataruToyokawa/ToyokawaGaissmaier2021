@@ -10,10 +10,10 @@
 ## Functions
 payoffGenerate4Arm_unsync = function(groupSize, m, r1, r2, r3, r4, payoff_H1, payoff_L1, payoff_H2, payoff_L2, payoff_H3, payoff_L3, payoff_H4, payoff_L4) {
     payoff = numeric(groupSize)
-    payoff[which(m==1)] = sample(c(payoff_L1,payoff_H1), length(which(m==1)), prob=c(1-r1, r1), replace=TRUE)
-    payoff[which(m==2)] = sample(c(payoff_L2,payoff_H2), length(which(m==2)), prob=c(1-r2, r2), replace=TRUE)
-    payoff[which(m==3)] = sample(c(payoff_L3,payoff_H3), length(which(m==3)), prob=c(1-r3, r3), replace=TRUE)
-    payoff[which(m==4)] = sample(c(payoff_L4,payoff_H4), length(which(m==4)), prob=c(1-r4, r4), replace=TRUE)
+    payoff[which(m==1)] = sample(c(payoff_L1,payoff_H1), size=length(which(m==1)), prob=c(1-r1, r1), replace=TRUE)
+    payoff[which(m==2)] = sample(c(payoff_L2,payoff_H2), size=length(which(m==2)), prob=c(1-r2, r2), replace=TRUE)
+    payoff[which(m==3)] = sample(c(payoff_L3,payoff_H3), size=length(which(m==3)), prob=c(1-r3, r3), replace=TRUE)
+    payoff[which(m==4)] = sample(c(payoff_L4,payoff_H4), size=length(which(m==4)), prob=c(1-r4, r4), replace=TRUE)
     # Add a small noise to the payoff
     payoff <- payoff + rnorm(groupSize,0,0.1) #-0.066 ~ +0.066
     return (payoff)

@@ -1,0 +1,4 @@
+experimentalAnalysis/social_learning_model_validation_0820_data.csv filter=lfs diff=lfs merge=lfs -text
+experimentalAnalysis/social_learning_model_validation_1022_riskID11_data.csv filter=lfs diff=lfs merge=lfs -text
+experimentalAnalysis/social_learning_model_validation_1022_riskID12_data.csv filter=lfs diff=lfs merge=lfs -text
+agentBasedSim/socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_data.csv filter=lfs diff=lfs merge=lfs -text
