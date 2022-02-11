@@ -6,11 +6,13 @@
 ##
 ###############################################################################################
 library(tidyverse)
+library(extrafont)
 library(cowplot)
 library(metR)
-
+library(magick)
 ## Load Functions
-# setwd("~/analysis_repo") <------- Set this folder as a working directory
+# setwd("~/analysis_repo") #<------- Set this folder as a working directory
+# setwd("~/Dropbox/wataru/papers/RiskySocialLearning/draft/analysis_repo") #<------- Set this folder as a working directory
 source("agentBasedSim/functions.R")
 
 
@@ -35,11 +37,11 @@ socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary <- socialLearni
 		)
 
 
-socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$copyRate_factor = paste(rep('\U03C3 = ', nrow(socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary)), socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$copyRate, sep ='')
+socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$copyRate_factor = paste(rep('Copying weight\n\U03C3 = ', nrow(socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary)), socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$copyRate, sep ='')
 
-socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$conformityExp_factor = paste(rep('\U03b8 = ', nrow(socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary)), socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$conformityExp, sep ='')
+socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$conformityExp_factor = paste(rep('Conformity exponent\n\U03b8 = ', nrow(socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary)), socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$conformityExp, sep ='')
 
-socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$invTemperature_factor = paste(rep('\U03b2 = ', nrow(socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary)), socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$invTemperature, sep ='')
+socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$invTemperature_factor = paste(rep('Inv. temperature\n\U03b2 = ', nrow(socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary)), socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$invTemperature, sep ='')
 #socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$conformityExp_factor = factor(socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$conformityExp_factor, levels = c('θ = 1','θ = 2','θ = 4','θ = 8'))
 
 ## Adding Denrell (2007)'s analytical solution
@@ -71,7 +73,7 @@ Denrell2007Simulation = data.frame(alpha = alphaArray, beta = betaArray, riskyCh
 # 	stat_function(fun=Denrell2007Solution, color='black', linetype='dashed', size=2/3)+
 # 	scale_fill_gradient2(midpoint = 0.5, low = "blue", mid = "grey90", high = "red")+
 # 	labs(x=expression(paste('Learning rate ',alpha,sep="")), y=expression(paste('Inverse temperature ',beta,sep="")), title='', fill="Proportion of \nchoosing \nthe risky option")+
-# 	myTheme_Helvetica()+
+# 	myTheme_Arial()+
 # 	theme(axis.text.x = element_text(angle = 90))+
 # 	theme(strip.text.y = element_text(angle = 0))+
 # 	theme(legend.text = element_text(angle = 0))+
@@ -94,8 +96,8 @@ Denrell2007Simulation = data.frame(alpha = alphaArray, beta = betaArray, riskyCh
 	stat_function(fun=Denrell2007Solution, color='black', linetype='dashed', size=2/3)+
 	scale_fill_gradient2(midpoint = 0.5, high = "red", mid = "grey90", low = "blue")+
 	ylim(c(0,10))+
-	#myTheme_gillsansMT()+
-	myTheme_Helvetica()+
+	# myTheme_gillsansMT()+
+	myTheme_Arial()+
 	theme(axis.text.x = element_text(angle = 90))+
 	theme(strip.text.y = element_text(angle = 0))+
 	theme(legend.text = element_text(angle = 0))+
@@ -122,7 +124,7 @@ Denrell2007Simulation = data.frame(alpha = alphaArray, beta = betaArray, riskyCh
 	scale_fill_gradient2(midpoint = 0.5, high = "red", mid = "grey90", low = "blue", breaks=c(0.1,0.5,0.9), labels=c(0.1,0.5,0.9) )+
 	ylim(c(0,10))+
 	#myTheme_gillsansMT()+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	theme(axis.text.x = element_text(angle = 90))+
 	theme(strip.text = element_text(size=12))+
 	theme(legend.text = element_text(angle = 0))+
@@ -149,7 +151,7 @@ socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary %>%
 	scale_fill_gradient2(midpoint = 0.5, high = "red", mid = "grey90", low = "blue")+
 	scale_y_continuous(limits = c(0, 10), breaks = c(1,5,10))+
 	#myTheme_gillsansMT()+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	theme(axis.text.x = element_text(angle = 90))+
 	theme(strip.text.y = element_text(angle = 0))+
 	theme(legend.text = element_text(angle = 90))+
@@ -175,7 +177,7 @@ socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$mean_proportion
 	labs(x=expression(paste('Learning rate ',alpha,sep="")),
 		y=expression(paste('Inverse temperature ',beta,sep="")),
 		#title='Gaussian noise\n mu=0.5; sigma=1',
-		fill = "Increases in \nthe risky choice by \nsocial learning"
+		fill = "Changes in \nthe risky choice by \nsocial learning"
 		#title='Gaussian noise\n mu=0.5; sigma=1', fill = "Proportion of\nsafe choice"
 		)+
 	#scale_fill_viridis(limits = c(0.45, 1), option="magma")+
@@ -184,7 +186,7 @@ socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary$mean_proportion
 	scale_fill_gradient2(midpoint = 0, high = "darkorange", mid = "grey90", low = "darkorchid3", breaks=c(-0.2,0,0.4),labels=c(-0.2,0,0.4))+
 	ylim(c(0,10))+
 	#myTheme_gillsansMT()+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	theme(axis.text.x = element_text(angle = 90))+
 	theme(strip.text = element_text(size=12))+
 	theme(legend.text = element_text(angle = 0))+
@@ -210,7 +212,7 @@ socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary %>%
 	scale_fill_gradient2(midpoint = 0, high = "darkorange", mid = "grey90", low = "darkorchid3")+
 	scale_y_continuous(limits = c(0, 10), breaks = c(1,5,10))+
 	#myTheme_gillsansMT()+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	theme(axis.text.x = element_text(angle = 90))+
 	# theme(axis.text.y = element_text(size=9))+
 	theme(strip.text.y = element_text(angle = 0))+
@@ -220,10 +222,14 @@ socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary %>%
 	NULL -> Denrell2007_figure_diff_from_baseline_full
 
 ## Figure 1
-figure1_left <- plot_grid(stable_2AB_scheme, Denrell2007_figure, labels = c('',''), ncol = 1, align = 'v')
+figure1_left <- plot_grid(stable_2AB_scheme, Denrell2007_figure, labels = c('a','b'), ncol = 1, align = 'v', label_size = 15)
 
-(figure1 <- plot_grid(figure1_left, Denrell2007_figure_social_learning, Denrell2007_figure_diff_from_baseline, labels = c('','',''), ncol = 3, align = 'v')
-)
+figure1 <- plot_grid(figure1_left, Denrell2007_figure_social_learning, Denrell2007_figure_diff_from_baseline, labels = c('','c','d'), ncol = 3, align = 'v', label_size = 15)
+
+
+
+ggsave(file = '~/Dropbox/wataru/papers/RiskySocialLearning/draft/submissions/eLife/Revision2/exp_reanalysis_result/figure1.png', plot = figure1, dpi = 300, width = 15, height = 6)
+
 
 ## ========================================================
 #
@@ -257,7 +263,7 @@ ggplot(mapping = aes(x=X)) +
 	)+
 	geom_vline(xintercept=2, linetype='dashed')+
 	geom_hline(yintercept=0.5, linetype='dashed')+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	scale_colour_viridis_c(expression(beta))+
 	labs(
 		y='Probability of choosing\nthe risky alternative',
@@ -270,7 +276,7 @@ socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary_added <- social
 added_length <- socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary %>% dplyr::filter(copyRate==0) %>% nrow()
 all_length <- socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary_added %>% nrow()
 socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary_added$conformityExp[(all_length-added_length+1):all_length] <- 4
-socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary_added$conformityExp_factor[(all_length-added_length+1):all_length] <- '\U03b8 = 4'
+socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary_added$conformityExp_factor[(all_length-added_length+1):all_length] <- 'Conformity exponent\n\U03b8 = 4'
 
 # Figure 2
 (socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary_added %>%
@@ -278,22 +284,28 @@ socialLearningParamSearch_riskPrem150_Gaussian_indivDiff_summary_added$conformit
 	dplyr::filter(conformityExp %in% c(1, 4)) %>%
 	dplyr::filter(invTemperature %in% c(3,5,7)) %>%
 	ggplot() +
-	geom_point(aes(hot_stove_suceptibility, 1-mean_proportionSafeChoice, colour=copyRate_factor)) +
-	stat_function(data=data.frame(X=c(0,8),invTemperature_factor='β = 3'), fun=Pr_when_beta, n = 1001, args=list(beta=3)) +
-	stat_function(data=data.frame(X=c(0,8),invTemperature_factor='β = 5'), fun=Pr_when_beta, n = 1001, args=list(beta=5)) +
-	stat_function(data=data.frame(X=c(0,8),invTemperature_factor='β = 7'), fun=Pr_when_beta, n = 1001, args=list(beta=7)) +
+	geom_point(aes(hot_stove_suceptibility, 1-mean_proportionSafeChoice, colour=as.factor(copyRate))) +
+	stat_function(data=data.frame(X=c(0,8),invTemperature_factor='Inv. temperature\nβ = 3'), fun=Pr_when_beta, n = 1001, args=list(beta=3)) +
+	stat_function(data=data.frame(X=c(0,8),invTemperature_factor='Inv. temperature\nβ = 5'), fun=Pr_when_beta, n = 1001, args=list(beta=5)) +
+	stat_function(data=data.frame(X=c(0,8),invTemperature_factor='Inv. temperature\nβ = 7'), fun=Pr_when_beta, n = 1001, args=list(beta=7)) +
 	geom_vline(xintercept=2, linetype='dashed')+
 	geom_hline(yintercept=0.5, linetype='dashed')+
 	facet_grid(invTemperature_factor ~ conformityExp_factor) +
-	scale_colour_viridis_d(expression(sigma))+
+	scale_colour_viridis_d(name = 'Copying weight\nσ')+
 	labs(
 		y='Probability of choosing\nthe risky alternative',
-		x=expression(alpha * (beta + 1))
+		x = 'Susceptibility to the hot stove effect\nα(β + 1)'
+		# x=paste0('Susceptibility to the hot stove effect\n', expression(alpha (beta + 1)))
 	)+
 	xlim(c(0,8))+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	NULL -> collective_rescue_simplified_view
 )
+
+
+ggsave(file = '~/Dropbox/wataru/papers/RiskySocialLearning/draft/submissions/eLife/Revision2/exp_reanalysis_result/figure1_alternative.png', plot = collective_rescue_simplified_view, dpi = 300, width = 8, height = 6)
+
+
 
 
 ## ========================================================
@@ -344,7 +356,7 @@ Pr_when_beta = function (X, beta) {
 		)+
 	ylim(c(0,1))+
 	xlim(c(0,8))+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	scale_colour_viridis_d(direction=-1)+
 	theme(legend.position = 'NaN')+
 	theme(plot.title = element_text(vjust = - 10, hjust = 0.7))+
@@ -387,7 +399,7 @@ Pr_when_alpha = function (X, alpha) {
 		)+
 	ylim(c(0,1))+
 	xlim(c(0,8))+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	scale_colour_viridis_d(direction=-1)+
 	theme(legend.position = 'NaN')+
 	theme(plot.title = element_text(vjust = - 10, hjust = 0.7))+
@@ -424,7 +436,7 @@ Pr_when_beta = function (X, beta) {
 		)+
 	ylim(c(0,1))+
 	xlim(c(0,1))+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	scale_colour_viridis_d(direction=-1)+
 	theme(legend.position = 'NaN')+
 	theme(plot.title = element_text(vjust = - 10))+
@@ -461,7 +473,7 @@ Pr_when_beta = function (X, beta) {
 		)+
 	ylim(c(0,1))+
 	xlim(c(-1,8))+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	scale_colour_viridis_d(direction=-1)+
 	theme(legend.position = 'NaN')+
 	theme(plot.title = element_text(vjust = - 10))+
@@ -508,19 +520,20 @@ pLs <- c(0.1, 0.2, 0.4, 0.6)
         },
         pLs
     ) +
-    annotate(geom="text", x=0.1, y=-13.5, label=expression(paste(italic(pl),' = 0.1',sep="")) ) +
-    annotate(geom="text", x=0.1, y=-9.5, label=expression(paste(italic(pl),' = 0.2',sep=""))) +
-    annotate(geom="text", x=0.1, y=-3.5, label=expression(paste(italic(pl),' = 0.4',sep=""))  ) +
-    annotate(geom="text", x=0.1, y=0.5, label=expression(paste(italic(pl),' = 0.6',sep=""))) +
+    annotate(geom="text", x=0.1, y=-13.5, label=expression(paste(italic(p[l]),' = 0.1',sep="")) , size = 5) +
+    annotate(geom="text", x=0.1, y=-9.5, label=expression(paste(italic(p[l]),' = 0.2',sep="")) , size = 5) +
+    annotate(geom="text", x=0.1, y=-3.5, label=expression(paste(italic(p[l]),' = 0.4',sep="")) , size = 5) +
+    annotate(geom="text", x=0.1, y=0.5, label=expression(paste(italic(p[l]),' = 0.6',sep=""))  , size = 5) +
+	annotate(geom="text", x=0.1, y=8, label=expression(paste('(',italic(p[h]),' = 0.7)',sep="")) , size = 5) +
     scale_colour_viridis_c(option="cividis", direction=-1)+
     labs(color="pL",
        # y = expression(paste('Risk-seeking bias: ', N[R]^'*' - N[S]^'*',sep="")),
        y = expression(atop('Risk-seeking bias: ', paste(N[R]^'*' - N[S]^'*'))),
-       x = expression(italic(e))
+       x = expression(paste('The population-level "risk premium" ', italic(e)))
        # x = expression(paste('The rate of getting enchanted with R: ', italic(e),sep=""))
        # x = expression(atop('The rate of', paste('getting enchanted with R: ', italic(e), sep="")))
        )+
-    myTheme_Helvetica()+
+    myTheme_Arial()+
     theme(legend.position = 'none')+
     NULL)
 
@@ -530,10 +543,10 @@ FigSocialLearningSimplest <- read_csv("dynamicsModel/FigSocialLearningSimplest.c
 names(FigSocialLearningSimplest) = c('e','c','f','pl','maxS','minS','diffS','maxR','minR','diffR','diffRS')
 FigSocialLearningSimplest_sample = dplyr::sample_frac(tbl = FigSocialLearningSimplest, size = 0.00001)
 
-FigSocialLearningSimplest$f_category = paste('f = ', FigSocialLearningSimplest$f, sep='')
-FigSocialLearningSimplest$c_category = paste('c = ', FigSocialLearningSimplest$c, sep='')
+FigSocialLearningSimplest$f_category = paste('Conformity exponent\nθ = ', FigSocialLearningSimplest$f, sep='')
+FigSocialLearningSimplest$c_category = paste('Copying weight\nσ = ', FigSocialLearningSimplest$c, sep='')
 FigSocialLearningSimplest$pl_category = paste('pl = ', FigSocialLearningSimplest$pl, sep='')
-FigSocialLearningSimplest$f_category = factor(FigSocialLearningSimplest$f_category, levels = c('f = 1','f = 2','f = 10'))
+FigSocialLearningSimplest$f_category = factor(FigSocialLearningSimplest$f_category, levels = c('Conformity exponent\nθ = 1','Conformity exponent\nθ = 2','Conformity exponent\nθ = 10'))
 (FigSocialLearningSimplest %>%
 	dplyr::filter(c == 0) %>%
     ggplot(aes(x=pl))+
@@ -543,13 +556,13 @@ FigSocialLearningSimplest$f_category = factor(FigSocialLearningSimplest$f_catego
     labs(
         fill = expression(paste(N[R]^'*' - N[S]^'*')),
         # fill = 'Differences in\nrisk seeking and\nrisk aversion',
-        y = expression(italic(e)),
-        x = expression(italic(p[l]))
+        y = expression(paste('The population-level\n"risk premium" e', '')),
+        x = expression(paste('Probability of exploration ', italic(p[l])))
         # y = expression(atop('The rate of getting', paste('enchanted with R: ', italic(e), sep=""))),
         # x = expression(paste('The rate of exploration: ', italic(p[l]), sep=""))
         )+
     scale_fill_gradient2(midpoint = 0, low = "blue", mid = "grey90", high = "red", breaks=c(-10,0,10))+
-    myTheme_Helvetica()+
+    myTheme_Arial()+
     # theme(axis.text.x = element_text(angle = 90), legend.position='top')+
     theme(strip.text.y = element_text(angle = 0))+
     # facet_grid(c_category ~ f_category)+
@@ -566,13 +579,13 @@ FigSocialLearningSimplest$f_category = factor(FigSocialLearningSimplest$f_catego
     labs(
         fill = expression(paste(N[R]^'*' - N[S]^'*')),
         # fill = 'Differences in\nrisk seeking and\nrisk aversion',
-        y = expression(italic(e)),
-        x = expression(italic(p[l]))
+        y = expression(paste('The population-level "risk premium" ', italic(e))),
+        x = expression(paste('Probability of exploration ', italic(p[l])))
         # y = expression(atop('The rate of', paste('getting enchanted with R: ', italic(e), sep=""))),
         # x = expression(paste('The rate of exploration: ', italic(p[l]), sep=""))
         )+
     scale_fill_gradient2(midpoint = 0, low = "blue", mid = "grey90", high = "red", breaks=c(-10,0,10))+
-    myTheme_Helvetica()+
+    myTheme_Arial()+
     theme(axis.text.x = element_text(angle = 90), legend.position='top')+
     theme(strip.text.y = element_text(angle = 270))+
     facet_grid(c_category ~ f_category)+
@@ -580,9 +593,13 @@ FigSocialLearningSimplest$f_category = factor(FigSocialLearningSimplest$f_catego
     NULL -> FigSocialLearningSimplest_social)
 
 ## Figure 3
-(
-	figure3_centre <- plot_grid(noSocialCurveSimplest_plot, FigSocialLearningSimplest_individual, labels = c('',''), ncol = 1, align = 'v')
-)
+set_null_device(cairo_pdf)
+figure3_centre <- plot_grid(noSocialCurveSimplest_plot, FigSocialLearningSimplest_individual, labels = c('b','c'), ncol = 1, align = 'v',label_size = 15)
+figure3 <- plot_grid(schematic_simplest, figure3_centre, FigSocialLearningSimplest_social, labels = c('a','','d'), ncol = 3, align = 'v',label_size = 15, rel_widths = c(1, 1, 1.4))
+
+ggsave(file = '~/Dropbox/wataru/papers/RiskySocialLearning/draft/submissions/eLife/Revision2/exp_reanalysis_result/figure3.png', plot = figure3, dpi = 300, width = 15, height = 6)
+
+
 
 # Figure 3 - additional (the bifurcation analysis)
 sleqtableSimplest <- read_csv("dynamicsModel/sleqtableSimplest.csv", col_names = FALSE)
@@ -591,9 +608,9 @@ names(sleqtableSimplest) = c('f','S_0','c','e','R_eq')
 sleqtableSimplest$RPreferingInitial = 0
 sleqtableSimplest$direction = NA
 sleqtableSimplest$R_0 = 20 - sleqtableSimplest$S_0
-sleqtableSimplest$conformityExponent = paste(rep('θ = ', nrow(sleqtableSimplest)), sleqtableSimplest$f, sep ='')
-sleqtableSimplest$conformityExponent = factor(sleqtableSimplest$conformityExponent, levels = c('θ = 0','θ = 1','θ = 2','θ = 10'))
-sleqtableSimplest$e_factor = paste(rep('e = ', nrow(sleqtableSimplest)), sleqtableSimplest$e, sep ='')
+sleqtableSimplest$conformityExponent = paste(rep('Conformity exponent\nθ = ', nrow(sleqtableSimplest)), sleqtableSimplest$f, sep ='')
+sleqtableSimplest$conformityExponent = factor(sleqtableSimplest$conformityExponent, levels = c('Conformity exponent\nθ = 0','Conformity exponent\nθ = 1','Conformity exponent\nθ = 2','Conformity exponent\nθ = 10'))
+sleqtableSimplest$e_factor = paste(rep('Risk premium\ne = ', nrow(sleqtableSimplest)), sleqtableSimplest$e, sep ='')
 
 for (i in 1:nrow(sleqtableSimplest)) {
     if (sleqtableSimplest$R_eq[i]>10) {
@@ -620,7 +637,7 @@ sleqtableSimplest <- sleqtableSimplest %>% dplyr::filter(c != 1)
         )+
     scale_shape_manual(values=c('upward'=2, 'downward'=6), name='Stream\'s direction')+
     scale_color_manual(values=c('0'='#56B4E9','1'='#D55E00'), name='Risky choice regime')+
-    myTheme_Helvetica()+
+    myTheme_Arial()+
     theme(axis.text.x = element_text(angle = 90), legend.position='top')+
     facet_grid(e_factor ~ conformityExponent)+
     xlim(c(0,1))+
@@ -631,6 +648,7 @@ sleqtableSimplest <- sleqtableSimplest %>% dplyr::filter(c != 1)
     NULL -> sleqtableSimplest_plot)
 
 
+ggsave(file = '~/Dropbox/wataru/papers/RiskySocialLearning/draft/submissions/eLife/Revision2/exp_reanalysis_result/sleqtableSimplest_plot.png', plot = sleqtableSimplest_plot, dpi = 300, width = 10, height = 7)
 
 ## ========================================================
 #
@@ -784,7 +802,7 @@ fit_AL00_multiVar_LKJ_indiv_riskID11_indiv_riskID11Condition_globalparameters <-
 
 ## behavioural data summary
 allBehaviour1022_group <- read.csv("experimentalAnalysis/allBehaviour1022_group.csv")
-allBehaviour1022_group_riskID11 <- allBehaviour1022_group %>% dplyr::filter(riskDistributionId == 11)
+allBehaviour1022_group_riskID11 <- allBehaviour1022_group %>% dplyr::filter(riskDistributionId == 11 & room != '102_session_622') #the group '102_session_622' had a wired error (3 of them played riskID11, and the rest two played riskID12)
 
 fit_SL00_multiVar_LKJ_1022_parameters <- read.csv("experimentalAnalysis/fit_SL00_multiVar_LKJ_1022_parameters.csv")
 
@@ -889,7 +907,7 @@ fit_AL00_multiVar_LKJ_indiv_riskID12_indiv_riskID12Condition_globalparameters <-
 
 ## behavioural data summary
 allBehaviour1022_group <- read.csv("experimentalAnalysis/allBehaviour1022_group.csv")
-allBehaviour1022_group_riskID12 <- allBehaviour1022_group %>% dplyr::filter(riskDistributionId == 12)
+allBehaviour1022_group_riskID12 <- allBehaviour1022_group %>% dplyr::filter(riskDistributionId == 12 & room != '102_session_622')
 
 fit_SL00_multiVar_LKJ_1022_parameters <- read.csv("experimentalAnalysis/fit_SL00_multiVar_LKJ_1022_parameters.csv")
 
@@ -981,30 +999,43 @@ social_learning_model_validation_1022_riskID12_summary_reallyHighSigma$proportio
 	social_learning_model_validation_1022_riskID12_summary_reallyHighSigma$raw_proportionRiskyChoice_b2_mean %>% convert_alphaRaw_to_alpha
 
 ggplot() +
-	geom_segment(aes(x=0,xend=6,y=0.5,yend=0.5),colour="grey30", size=0.5) +
-	geom_ribbon(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='grey20', alpha=1/2)+
-	geom_ribbon(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==1&soc_mean_category=='mild'), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='orange', alpha=1/2)+
-	geom_point(data = parameterfit_indiv_AL00_0820, mapping=aes(hot_stove_susceptibility_trancated, risky_choice_mean), colour='grey20', shape = 17)+ # shape=5: diamond
+	geom_segment(aes(x=0,xend=5.8,y=0.5,yend=0.5),colour="grey30", size=0.5) +
+  geom_ribbon(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==0&hot_stove_susceptibility_rounded<6), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='grey20', alpha=1/2)+
+	geom_ribbon(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==1&soc_mean_category=='mild'&hot_stove_susceptibility_rounded<6), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='orange', alpha=1/2)+
+  geom_point(data = parameterfit_indiv_AL00_0820, mapping=aes(hot_stove_susceptibility_trancated, risky_choice_mean), colour='grey20', shape = 17)+ # shape=5: diamond
 	geom_point(data = fit_parameters_group_SL00_mcmc, mapping=aes(hot_stove_susceptibility_trancated,risky_choice_mean, colour=soc_mean), shape = 20) +
-	geom_line(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid), size=1.0)+
-	geom_line(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==1), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), size=1.0)+
-	geom_line(data=social_learning_model_validation_0820_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), linetype = 'dashed', size=1.0)+
+	geom_line(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==0&hot_stove_susceptibility_rounded<6), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid , linetype = "Ind"), size=1.0)+
+	geom_line(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==1&hot_stove_susceptibility_rounded<6), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean) , linetype = "g1"), size=1.0)+
+	geom_line(data=social_learning_model_validation_0820_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean) , linetype = 'g2'), size=1.0)+
 	scale_colour_viridis_c(expression('Copying weight \U03C3'[i]), begin = 0.2, end = 0.9, option='plasma', direction=-1)+
-	myTheme_Helvetica()+
+  scale_linetype_manual(name = ""
+                 , breaks = c("Ind","g1","g2")
+                 , labels = c("Individual","Group average","Group with \U03C3 = 0.4")
+                 , values = c('solid','solid','dashed')
+                 , guide = guide_legend(
+                   override.aes = list(linetype = c('solid','solid','dashed')
+                                       , size=0.6
+                                       , color = c('black','#ff751a','#ff6666'))
+                   , order=1)
+                 ) +
+	myTheme_Arial()+
 	xlim(c(0,6.5))+
 	labs(
 		x = expression(atop('Susceptibility to the hot stove effect', paste(alpha[i], '(', beta[i], '+1)'))),
 		y = 'Mean proportion of choosing\nthe optimal risky option',
 		title = 'The 1-risky-1-safe task \n(N = 168)') +
+  guides(colour = "none")+
 	#theme(legend.position = c(0.85, 0.5))+
-	theme(legend.position = NaN)+
+	#theme(legend.position = NaN)+
+	theme(legend.position = c(0.65, 0.75))+
 	theme(legend.title = element_text(size=12))+
 	theme(legend.text = element_text(size=11))+
+  theme(legend.key = element_rect(fill = "transparent", colour = "transparent"))+
 	NULL -> fig6_a
 
 ggplot() +
 	geom_segment(aes(x=0,xend=6,y=0.25,yend=0.25),colour="grey30", size=0.5) +
-	geom_ribbon(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='grey20', alpha=1/2)+
+  geom_ribbon(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='grey20', alpha=1/2)+
 	geom_ribbon(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==1&soc_mean_category=='mild'), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='orange', alpha=1/2)+
 	geom_point(data = fit_AL_indiv_riskID11_parameters, mapping=aes(hot_stove_susceptibility_trancated, risky_choice_mean), colour='grey20', shape = 17)+ # shape=5: diamond
 	geom_point(data = fit_SL00_riskID11_parameters, mapping=aes(hot_stove_susceptibility_trancated,risky_choice_mean, colour=soc_mean_SL00_multiVar_LKJ), shape = 20) +
@@ -1012,7 +1043,7 @@ ggplot() +
 	geom_line(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==1), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), size=1.0)+
 	geom_line(data=social_learning_model_validation_1022_riskID11_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), linetype = 'dashed', size=1.0)+
 	scale_colour_viridis_c(expression('Copying weight \U03C3'[i]), begin = 0.2, end = 0.9, option='plasma', direction=-1)+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	xlim(c(0,6.5))+
 	labs(
 		x = expression(atop('Susceptibility to the hot stove effect', paste(alpha[i], '(', beta[i], '+1)'))),
@@ -1031,9 +1062,9 @@ ggplot() +
   geom_point(data = fit_SL00_riskID12_parameters, mapping=aes(hot_stove_susceptibility_trancated,risky_choice_mean, colour=soc_mean_SL00_multiVar_LKJ), shape = 20) +
 	geom_line(data=social_learning_model_validation_1022_riskID12_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid), size=1.0)+
 	geom_line(data=social_learning_model_validation_1022_riskID12_summary%>%dplyr::filter(condition_dummy==1), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), size=1.0)+
-	geom_line(data=social_learning_model_validation_1022_riskID12_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), linetype = 'dashed', size=1.0)+
+	geom_line(data=social_learning_model_validation_1022_riskID12_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), linetype = "dashed", size=1.0)+
 	scale_colour_viridis_c(expression('Copying weight \U03C3'[i]), begin = 0.2, end = 0.9, option='plasma', direction=-1)+
-	myTheme_Helvetica()+
+	myTheme_Arial()+
 	xlim(c(0,6.5))+
 	labs(
 		x = expression(atop('Susceptibility to the hot stove effect', paste(alpha[i], '(', beta[i], '+1)'))),
@@ -1051,3 +1082,192 @@ ggplot() +
 	, labels = c('','',''), ncol = 3, align = 'v'
 	)
 )
+
+
+##############################################3
+## Supplementary figure 
+## Each group's behaviour
+##############################################
+library(ggpubr)
+# two-ab task
+allBehaviour0820$group_category <- allBehaviour0820$room
+allBehaviour0820$group_category[which(allBehaviour0820$indivOrGroup==0)] <- 'Individual'
+
+allBehaviour0820$total_n <- allBehaviour0820$socialFreq_safe + allBehaviour0820$socialFreq_risky
+allBehaviour0820$total_n[which(is.na(allBehaviour0820$total_n))] <- 0
+
+allBehaviour0820 %>% 
+	group_by(round, group_category) %>%
+	summarise(mean_risky_choice_prob = mean(choice_num, na.rm=TRUE)
+		, total_n = table(total_n) %>% which.max() %>% names() %>% as.numeric()
+		) -> allBehaviour0820_each_group
+
+allBehaviour0820_each_group$riskDistributionId_factor <- 'twoArmed'
+allBehaviour0820_each_group$mean_safe_choice_prob <- 1 - allBehaviour0820_each_group$mean_risky_choice_prob
+
+allBehaviour0820_each_group %>% 
+	group_by(group_category, riskDistributionId_factor) %>%
+	summarise(groupSize = table(total_n) %>% which.max() %>% names() %>% as.numeric()) -> allBehaviour0820_group_size
+allBehaviour0820_group_size$groupSize[which(allBehaviour0820_group_size$group_category=='Individual')] <- 1
+
+# 4-ab task
+allBehaviour1022_indiv$group_category <- 'Individual'
+allBehaviour1022_group$group_category <- allBehaviour1022_group$room
+
+allBehaviour1022_indiv$total_n <- allBehaviour1022_indiv$socialFreq_safe1 + 
+	allBehaviour1022_indiv$socialFreq_safe2 +
+	allBehaviour1022_indiv$socialFreq_safe3 +
+	allBehaviour1022_indiv$socialFreq_risky
+allBehaviour1022_group$total_n <- allBehaviour1022_group$socialFreq_safe1 + 
+	allBehaviour1022_group$socialFreq_safe2 +
+	allBehaviour1022_group$socialFreq_safe3 +
+	allBehaviour1022_group$socialFreq_risky
+
+allBehaviour1022_indiv %>% 
+	group_by(round, group_category, riskDistributionId_factor) %>%
+	summarise(mean_risky_choice_prob = mean(best_risky_choice, na.rm=TRUE)
+		, mean_safe_choice_prob = mean(best_safe_choice, na.rm=TRUE)
+		, total_n = table(total_n) %>% which.max() %>% names() %>% as.numeric()
+		) -> allBehaviour1022_indiv_each_group
+allBehaviour1022_indiv_each_group %>% 
+	group_by(group_category, riskDistributionId_factor) %>%
+	summarise(groupSize = table(total_n) %>% which.max() %>% names() %>% as.numeric()) -> allBehaviour1022_indiv_size
+allBehaviour1022_indiv_size$groupSize <- 1
+
+allBehaviour1022_group %>% 
+	group_by(round, group_category, riskDistributionId_factor) %>%
+	summarise(mean_risky_choice_prob = mean(best_risky_choice, na.rm=TRUE)
+		, mean_safe_choice_prob = mean(best_safe_choice, na.rm=TRUE)
+		, total_n = table(total_n) %>% which.max() %>% names() %>% as.numeric()
+		) -> allBehaviour1022_group_each_group
+allBehaviour1022_group_each_group %>% 
+	group_by(group_category, riskDistributionId_factor) %>%
+	summarise(groupSize = table(total_n) %>% which.max() %>% names() %>% as.numeric()) -> allBehaviour1022_group_size
+
+allBehaviour_all_each_group <- allBehaviour0820_each_group %>% 
+	rbind(allBehaviour1022_indiv_each_group) %>%
+	rbind(allBehaviour1022_group_each_group)
+all_group_size <- allBehaviour0820_group_size %>%
+	rbind(allBehaviour1022_group_size) %>%
+	rbind(allBehaviour1022_indiv_size)
+
+allBehaviour_all_each_group <- allBehaviour_all_each_group %>% left_join(all_group_size, key=group_category)
+allBehaviour_all_each_group$groupSize_with_n <- paste('n =', allBehaviour_all_each_group$groupSize)
+
+allBehaviour_all_each_group$task_name <- allBehaviour_all_each_group$riskDistributionId_factor
+allBehaviour_all_each_group$task_name[which(allBehaviour_all_each_group$riskDistributionId_factor=='twoArmed')] <- '1-risky-1-safe'
+allBehaviour_all_each_group$task_name[which(allBehaviour_all_each_group$riskDistributionId_factor=='Con: 0')] <- '1-risky-3-safe'
+allBehaviour_all_each_group$task_name[which(allBehaviour_all_each_group$riskDistributionId_factor=='Con: 2')] <- '2-risky-2-safe'
+
+horizontal_lines <- data.frame(task_name = c('1-risky-1-safe', '1-risky-3-safe', '2-risky-2-safe')
+	, yintercept = c(0.5, 0.25, 0.25))
+
+allBehaviour_all_each_group %>%
+	ggplot(aes(round, mean_risky_choice_prob)) +
+	geom_line(aes(group=group_category), alpha = 1/2, colour='grey20') +
+	stat_summary(fun = mean, geom="line", colour='red')+
+	stat_summary(aes(round, mean_safe_choice_prob), fun = mean, geom="line", colour='blue')+
+	# geom_hline(yintercept=0.5, linetype='dashed') +
+	geom_segment(data=horizontal_lines, aes(x=1,xend=70,y=yintercept,yend=yintercept), linetype="dashed", size=0.5) +
+	facet_grid(groupSize_with_n ~ task_name) +
+	myTheme_Arial() +
+	scale_y_continuous(breaks=c(0,0.5,1))+
+	labs(x = 'Trial', y = 'Proportion of choosing\nthe best risky option')+
+	NULL -> each_group_behaviour
+
+allBehaviour_all_each_group %>%
+	group_by(group_category, groupSize, task_name) %>%
+	summarise(n = n()) %>%
+	ggplot() +
+	geom_bar(aes(groupSize), stat = "count")+
+	facet_grid(. ~ task_name)+
+	labs(x = 'Group size', y = 'Count')+
+	myTheme_Arial() +
+	scale_y_continuous(breaks=c(0,4,8,12))+
+	xlim(c(2,8.5))+
+	theme(panel.grid.major = element_line(size = 0.5
+		, linetype = 'solid', colour='grey40'))+
+	NULL -> group_size_distribution
+
+(
+  exp_group_behav_plot <- ggarrange(each_group_behaviour, group_size_distribution
+  	, heights = c(2, 0.5)
+	# ,  common.legend = TRUE
+	# ,  legend = 'right'
+	, labels = c('','',''), ncol = 1, align = 'v'
+	)
+)
+
+ggsave(file = "exp_group_behav_plot.pdf"
+       , plot = exp_group_behav_plot
+       , dpi = 600, width = 9, height = 10
+       , device = cairo_pdf
+	)
+
+
+########################################3
+## relationship between group size vs. parameters?
+##################################################
+allBehaviour0820_social_summarised_t35_groupSize <- allBehaviour0820_social_summarised_t35 %>% left_join(all_group_size, by = c("groupID" = "group_category"))
+allBehaviour0820_social_summarised_t35_groupSize <- allBehaviour0820_social_summarised_t35_groupSize %>% left_join(fit_parameters_group_SL00_mcmc, by='sub')
+
+allBehaviour1022_group_riskID11_summarised_t35_groupSize <- allBehaviour1022_group_riskID11_summarised_t35 %>% left_join(all_group_size, by = c("groupID" = "group_category"))
+allBehaviour1022_group_riskID11_summarised_t35_groupSize <- allBehaviour1022_group_riskID11_summarised_t35_groupSize %>% left_join(fit_SL00_riskID11_parameters, by='sub')
+
+allBehaviour1022_group_riskID12_summarised_t35_groupSize <- allBehaviour1022_group_riskID12_summarised_t35 %>% left_join(all_group_size, by = c("groupID" = "group_category"))
+allBehaviour1022_group_riskID12_summarised_t35_groupSize <- allBehaviour1022_group_riskID12_summarised_t35_groupSize %>% left_join(fit_SL00_riskID12_parameters, by='sub')
+
+group_size_vs_parameters <- data.frame(
+	amazonID = c(allBehaviour0820_social_summarised_t35_groupSize$amazonID.x, allBehaviour1022_group_riskID11_summarised_t35_groupSize$amazonID.x, allBehaviour1022_group_riskID12_summarised_t35_groupSize$amazonID.x)
+	, groupSize = c(allBehaviour0820_social_summarised_t35_groupSize$groupSize, allBehaviour1022_group_riskID11_summarised_t35_groupSize$groupSize, allBehaviour1022_group_riskID12_summarised_t35_groupSize$groupSize)
+	, groupID = c(allBehaviour0820_social_summarised_t35_groupSize$groupID.x, allBehaviour1022_group_riskID11_summarised_t35_groupSize$groupID.x, allBehaviour1022_group_riskID12_summarised_t35_groupSize$groupID.x)
+	, riskDistributionId_factor = c(allBehaviour0820_social_summarised_t35_groupSize$riskDistributionId_factor, allBehaviour1022_group_riskID11_summarised_t35_groupSize$riskDistributionId_factor, allBehaviour1022_group_riskID12_summarised_t35_groupSize$riskDistributionId_factor)
+	, alpha_mean_SL00_multiVar_LKJ = c(allBehaviour0820_social_summarised_t35_groupSize$alpha_mean_SL00_multiVar_LKJ, allBehaviour1022_group_riskID11_summarised_t35_groupSize$alpha_mean_SL00_multiVar_LKJ, allBehaviour1022_group_riskID12_summarised_t35_groupSize$alpha_mean_SL00_multiVar_LKJ)
+	, beta_mean_SL00_multiVar_LKJ = c(allBehaviour0820_social_summarised_t35_groupSize$beta_mean_SL00_multiVar_LKJ, allBehaviour1022_group_riskID11_summarised_t35_groupSize$beta_mean_SL00_multiVar_LKJ, allBehaviour1022_group_riskID12_summarised_t35_groupSize$beta_mean_SL00_multiVar_LKJ)
+	, soc_mean_SL00_multiVar_LKJ = c(allBehaviour0820_social_summarised_t35_groupSize$soc_mean_SL00_multiVar_LKJ, allBehaviour1022_group_riskID11_summarised_t35_groupSize$soc_mean_SL00_multiVar_LKJ, allBehaviour1022_group_riskID12_summarised_t35_groupSize$soc_mean_SL00_multiVar_LKJ)
+	, theta_mean_SL00_multiVar_LKJ = c(allBehaviour0820_social_summarised_t35_groupSize$theta_mean_SL00_multiVar_LKJ, allBehaviour1022_group_riskID11_summarised_t35_groupSize$theta_mean_SL00_multiVar_LKJ, allBehaviour1022_group_riskID12_summarised_t35_groupSize$theta_mean_SL00_multiVar_LKJ)
+	)
+group_size_vs_parameters$task_name <- '1-risky-1-safe'
+group_size_vs_parameters$task_name[which(group_size_vs_parameters$riskDistributionId_factor=='Con: 0')] <- '1-risky-3-safe'
+group_size_vs_parameters$task_name[which(group_size_vs_parameters$riskDistributionId_factor=='Con: 2')] <- '2-risky-2-safe'
+
+group_size_vs_parameters$pos_vs_neg <- 'Positive frequency dependence'
+group_size_vs_parameters$pos_vs_neg[which(group_size_vs_parameters$theta_mean_SL00_multiVar_LKJ < 0)] <- 'Negative frequency dependence'
+group_size_vs_parameters$pos_vs_neg <- factor(group_size_vs_parameters$pos_vs_neg, levels=c('Positive frequency dependence', 'Negative frequency dependence'))
+
+## just correlation
+cor.test(filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='1-risky-1-safe')$groupSize, filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='1-risky-1-safe')$soc_mean_SL00_multiVar_LKJ)
+cor.test(filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='1-risky-1-safe')$groupSize, filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='1-risky-1-safe')$theta_mean_SL00_multiVar_LKJ)
+cor.test(filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='1-risky-3-safe')$groupSize, filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='1-risky-3-safe')$soc_mean_SL00_multiVar_LKJ)
+cor.test(filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='1-risky-3-safe')$groupSize, filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='1-risky-3-safe')$theta_mean_SL00_multiVar_LKJ)
+cor.test(filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='2-risky-2-safe')$groupSize, filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='2-risky-2-safe')$soc_mean_SL00_multiVar_LKJ)
+cor.test(filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='2-risky-2-safe')$groupSize, filter(group_size_vs_parameters, pos_vs_neg=='Positive frequency dependence'&task_name=='2-risky-2-safe')$theta_mean_SL00_multiVar_LKJ)
+
+group_size_vs_parameters %>% 
+	ggplot(aes(groupSize, soc_mean_SL00_multiVar_LKJ, colour=pos_vs_neg, shape=pos_vs_neg)) +
+	geom_point(aes(groupSize, soc_mean_SL00_multiVar_LKJ, colour=pos_vs_neg, shape=pos_vs_neg))+
+	geom_smooth(geom='line',se=FALSE, method='lm')+
+	scale_colour_manual(name='', values=c('red','blue'))+
+	scale_shape_manual(name='', values=c(2, 18))+
+	myTheme_Arial()+
+	facet_grid(. ~ task_name)+
+	labs(x = 'Group Size', y = 'Fit social learning weight \U03C3')+
+	border()+
+	NULL
+
+group_size_vs_parameters %>% 
+	ggplot(aes(groupSize, theta_mean_SL00_multiVar_LKJ, colour=pos_vs_neg, shape=pos_vs_neg)) +
+	geom_point()+
+	geom_smooth(geom='line',se=FALSE, method='lm')+
+	scale_colour_manual(name='', values=c('red','blue'))+
+	scale_shape_manual(name='', values=c(2, 18))+
+	myTheme_Arial()+
+	facet_grid(. ~ task_name)+
+	labs(x = 'Group Size', y = 'Fit conformity exponent \U03B8')+
+	border()+
+	NULL
+
+
+
+
+

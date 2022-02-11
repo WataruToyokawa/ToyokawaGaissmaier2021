@@ -22,7 +22,7 @@ setwd("~/Dropbox/wataru/papers/RiskySocialLearning/experiment/overall_analysis")
 source("functions.R")
 
 # number of the simulation run
-repetition = 100000 # 1000
+repetition = 200000 # 1000
 
 # =============================================
 # The 1-risky 3-safe task
@@ -532,7 +532,7 @@ for(condition in conditionList) {
 			choices[,t] = mapply(function(p1,p2,p3,p4){ sample(1:numOptions, size=1, prob=c(p1,p2,p3,p4), replace=TRUE) }, netChoiceProb[1,t,], netChoiceProb[2,t,], netChoiceProb[3,t,], netChoiceProb[4,t,] )
 			# each subject earns some money (if lucky)
 			# payoffs[,t] = payoffGenerateBinary(groupSize, choices[,t], rSure, rRisky, payoff_sureL, payoff_sureH, payoff_risky1, payoff_risky2)
-			payoffs[,t] = payoffGenerate4Arm_unsync(groupSize, choices[,t], rSure, rSure, rSure, rRisky, payoff_H1, payoff_L1, payoff_H2, payoff_L2, payoff_H3, payoff_L3, payoff_H4, payoff_L4)
+			payoffs[,t] = payoffGenerate4Arm_unsync(groupSize, choices[,t], rSure, rSure, rRisky, rRisky, payoff_H1, payoff_L1, payoff_H2, payoff_L2, payoff_H3, payoff_L3, payoff_H4, payoff_L4)
 			# update choiceCounter and learningRate (if the learning rate is an averaging rule in this simulation.)
 			updatingPositions = (choices[,t] + numOptions*(1:groupSize-1))
 			
@@ -986,7 +986,7 @@ social_learning_model_validation_0820_data <- social_learning_model_validation_0
 social_learning_model_validation_0820_data <- social_learning_model_validation_0820_data %>% rbind(social_learning_model_validation_0820[[paste("n=", groupSize)]][[paste("condition=", "Group")]] %>% data.frame())
 
 social_learning_model_validation_0820_data$hot_stove_susceptibility_rounded <- (social_learning_model_validation_0820_data$hot_stove_susceptibility * 5) %>% round()/5
-social_learning_model_validation_0820_data$hot_stove_susceptibility_rounded[which(social_learning_model_validation_0820_data$hot_stove_susceptibility_rounded>6)] <- 6
+social_learning_model_validation_0820_data$hot_stove_susceptibility_rounded[which(social_learning_model_validation_0820_data$hot_stove_susceptibility_rounded>6.5)] <- 6.5
 
 social_learning_model_validation_0820_data$soc_mean_category <- 'mild'
 

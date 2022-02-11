@@ -870,37 +870,54 @@ social_learning_model_validation_1022_riskID12_summary_reallyHighSigma$proportio
 ## Plot (Figure 6)
 ```{r fig.width=12, fig.height=4.5}
 ggplot() +
-	geom_segment(aes(x=0,xend=6,y=0.5,yend=0.5),colour="grey30", size=0.5) +
+	geom_segment(aes(x=0,xend=5.8,y=0.5,yend=0.5),colour="grey30", size=0.5) +
+  geom_ribbon(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==0&hot_stove_susceptibility_rounded<6), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='grey20', alpha=1/2)+
+	geom_ribbon(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==1&soc_mean_category=='mild'&hot_stove_susceptibility_rounded<6), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='orange', alpha=1/2)+
+  geom_point(data = parameterfit_indiv_AL00_0820, mapping=aes(hot_stove_susceptibility_trancated, risky_choice_mean), colour='grey20', shape = 17)+ # shape=5: diamond
 	geom_point(data = fit_parameters_group_SL00_mcmc, mapping=aes(hot_stove_susceptibility_trancated,risky_choice_mean, colour=soc_mean), shape = 20) +
-	geom_point(data = parameterfit_indiv_AL00_0820, mapping=aes(hot_stove_susceptibility_trancated, risky_choice_mean), colour='grey20', shape = 18)+ # shape=5: diamond
-	geom_line(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid))+
-	geom_line(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==1), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)))+
-	geom_line(data=social_learning_model_validation_0820_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), linetype = 'dashed')+
+	geom_line(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==0&hot_stove_susceptibility_rounded<6), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid , linetype = "Ind"), size=1.0)+
+	geom_line(data=social_learning_model_validation_0820_summary%>%dplyr::filter(condition_dummy==1&hot_stove_susceptibility_rounded<6), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean) , linetype = "g1"), size=1.0)+
+	geom_line(data=social_learning_model_validation_0820_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean) , linetype = 'g2'), size=1.0)+
 	scale_colour_viridis_c(expression('Copying weight \U03C3'[i]), begin = 0.2, end = 0.9, option='plasma', direction=-1)+
+  scale_linetype_manual(name = ""
+                 , breaks = c("Ind","g1","g2")
+                 , labels = c("Individual","Group average","Group with \U03C3 = 0.4")
+                 , values = c('solid','solid','dashed')
+                 , guide = guide_legend(
+                   override.aes = list(linetype = c('solid','solid','dashed')
+                                       , size=0.6
+                                       , color = c('black','#ff751a','#ff6666'))
+                   , order=1)
+                 ) +
 	myTheme_Helvetica()+
 	xlim(c(0,6.5))+
 	labs(
-		x = expression(atop('Susceptibility to the hot stove effect', paste(alpha[i], '*(', beta[i], '+1)'))),
+		x = expression(atop('Susceptibility to the hot stove effect', paste(alpha[i], '(', beta[i], '+1)'))),
 		y = 'Mean proportion of choosing\nthe optimal risky option',
 		title = 'The 1-risky-1-safe task \n(N = 168)') +
+  guides(colour = "none")+
 	#theme(legend.position = c(0.85, 0.5))+
-	theme(legend.position = NaN)+
+	#theme(legend.position = NaN)+
+	theme(legend.position = c(0.65, 0.75))+
 	theme(legend.title = element_text(size=12))+
 	theme(legend.text = element_text(size=11))+
+  theme(legend.key = element_rect(fill = "transparent", colour = "transparent"))+
 	NULL -> fig6_a
 
 ggplot() +
 	geom_segment(aes(x=0,xend=6,y=0.25,yend=0.25),colour="grey30", size=0.5) +
+  geom_ribbon(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='grey20', alpha=1/2)+
+	geom_ribbon(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==1&soc_mean_category=='mild'), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='orange', alpha=1/2)+
+	geom_point(data = fit_AL_indiv_riskID11_parameters, mapping=aes(hot_stove_susceptibility_trancated, risky_choice_mean), colour='grey20', shape = 17)+ # shape=5: diamond
 	geom_point(data = fit_SL00_riskID11_parameters, mapping=aes(hot_stove_susceptibility_trancated,risky_choice_mean, colour=soc_mean_SL00_multiVar_LKJ), shape = 20) +
-	geom_point(data = fit_AL_indiv_riskID11_parameters, mapping=aes(hot_stove_susceptibility_trancated, risky_choice_mean), colour='grey20', shape = 18)+ # shape=5: diamond
-	geom_line(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid))+
-	geom_line(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==1), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)))+
-	geom_line(data=social_learning_model_validation_1022_riskID11_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), linetype = 'dashed')+
+	geom_line(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid), size=1.0)+
+	geom_line(data=social_learning_model_validation_1022_riskID11_summary%>%dplyr::filter(condition_dummy==1), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), size=1.0)+
+	geom_line(data=social_learning_model_validation_1022_riskID11_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), linetype = 'dashed', size=1.0)+
 	scale_colour_viridis_c(expression('Copying weight \U03C3'[i]), begin = 0.2, end = 0.9, option='plasma', direction=-1)+
 	myTheme_Helvetica()+
 	xlim(c(0,6.5))+
 	labs(
-		x = expression(atop('Susceptibility to the hot stove effect', paste(alpha[i], '*(', beta[i], '+1)'))),
+		x = expression(atop('Susceptibility to the hot stove effect', paste(alpha[i], '(', beta[i], '+1)'))),
 		y = 'Mean proportion of choosing\nthe optimal risky option',
 		title = 'The 1-risky-3-safe task \n(N = 148)') +
 	theme(legend.position = NaN)+
@@ -910,16 +927,18 @@ ggplot() +
 
 ggplot() +
 	geom_segment(aes(x=0,xend=6,y=0.25,yend=0.25),colour="grey30", size=0.5) +
-	geom_point(data = fit_SL00_riskID12_parameters, mapping=aes(hot_stove_susceptibility_trancated,risky_choice_mean, colour=soc_mean_SL00_multiVar_LKJ), shape = 20) +
-	geom_point(data = fit_AL_indiv_riskID12_parameters, mapping=aes(hot_stove_susceptibility_trancated, risky_choice_mean), colour='grey20', shape = 18)+ # shape=5: diamond
-  geom_line(data=social_learning_model_validation_1022_riskID12_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid))+
-	geom_line(data=social_learning_model_validation_1022_riskID12_summary%>%dplyr::filter(condition_dummy==1), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)))+
-	geom_line(data=social_learning_model_validation_1022_riskID12_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), linetype = 'dashed')+
+  geom_ribbon(data=social_learning_model_validation_1022_riskID12_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='grey20', alpha=1/2)+
+	geom_ribbon(data=social_learning_model_validation_1022_riskID12_summary%>%dplyr::filter(condition_dummy==1&soc_mean_category=='mild'), mapping=aes(hot_stove_susceptibility_rounded, ymin=proportionRiskyChoice_b2_lower, ymax=proportionRiskyChoice_b2_upper), fill='orange', alpha=1/2)+
+	geom_point(data = fit_AL_indiv_riskID12_parameters, mapping=aes(hot_stove_susceptibility_trancated, risky_choice_mean), colour='grey20', shape = 17)+ # shape=5: diamond
+  geom_point(data = fit_SL00_riskID12_parameters, mapping=aes(hot_stove_susceptibility_trancated,risky_choice_mean, colour=soc_mean_SL00_multiVar_LKJ), shape = 20) +
+	geom_line(data=social_learning_model_validation_1022_riskID12_summary%>%dplyr::filter(condition_dummy==0), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid), size=1.0)+
+	geom_line(data=social_learning_model_validation_1022_riskID12_summary%>%dplyr::filter(condition_dummy==1), mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), size=1.0)+
+	geom_line(data=social_learning_model_validation_1022_riskID12_summary_reallyHighSigma, mapping=aes(hot_stove_susceptibility_rounded, proportionRiskyChoice_b2_mid, group=soc_mean_category, colour=mean(soc_mean)), linetype = "dashed", size=1.0)+
 	scale_colour_viridis_c(expression('Copying weight \U03C3'[i]), begin = 0.2, end = 0.9, option='plasma', direction=-1)+
 	myTheme_Helvetica()+
 	xlim(c(0,6.5))+
 	labs(
-		x = expression(atop('Susceptibility to the hot stove effect', paste(alpha[i], '*(', beta[i], '+1)'))),
+		x = expression(atop('Susceptibility to the hot stove effect', paste(alpha[i], '(', beta[i], '+1)'))),
 		y = 'Mean proportion of choosing\nthe optimal risky option',
 		title = 'The 2-risky-2-safe task \n(N = 151)') +
 	theme(legend.position = c(0.75, 0.7))+
@@ -929,9 +948,10 @@ ggplot() +
 
 (
   figure_exp_model_pred <- ggarrange(fig6_a, fig6_b, fig6_c
-	# ,  common.legend = TRUE
-	# ,  legend = 'right'
-	, labels = c('','',''), ncol = 3, align = 'v'
+                                     # ,  common.legend = TRUE
+                                     # # ,  legend = 'right'
+                                     , labels = c('a','b','c')
+                                     , ncol = 3, align = 'v'
 	)
 )
 

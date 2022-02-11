@@ -186,6 +186,27 @@ myTheme_Helvetica = function() {
   )
 }
 
+myTheme_Arial = function() {
+  theme(
+    #legend.position = 'none',
+    strip.background = element_rect(fill = NA),
+    #panel.border = element_rect(fill = NA, colour = "black", size = 0.8),
+    strip.text = element_text(size=13, family="Arial" ), #"Arial"
+    axis.line = element_line(colour = "#000000", size = 0.2, linetype = "solid", lineend = "round"),
+    legend.text = element_text(size=13, family="Arial" ,colour='black'),
+    legend.title = element_text(size=13, family="Arial" ,colour='black'),
+    axis.text.x = element_text(size=13, family="Arial" ,colour='black'),
+    axis.text.y = element_text(size=13, family="Arial" ,colour='black'),
+    axis.title.x=element_text(size=13, family="Arial" ),
+    axis.title.y=element_text(size=13, family="Arial" ),
+    plot.title = element_text(size=13, family="Arial", hjust=0.5),
+    panel.background = element_rect(fill = "white", colour = NA),
+    panel.grid = element_blank(),
+    plot.background = element_rect(colour = "white"),
+    panel.spacing = unit(0.2, "lines")
+  )
+}
+
 
 ## Converting function
 convert_alpha_to_alphaRaw = function (alpha) {
