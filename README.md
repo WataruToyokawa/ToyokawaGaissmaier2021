@@ -1,5 +1,5 @@
 # ToyokawaGaissmaier2021
-This is a repository on the paper entitled "Conformity leading self-organised rescue from suboptimally biased risky decision-making" written by Wataru Toyokawa co-authored with Wolfgang Gaissmaier. The figures shown in the main text can be reproduced by running `drawing_figures.R`. 
+This is a repository on the paper entitled "Conformist social learning leads to self-organised prevention against adverse bias in risky decision making" written by Wataru Toyokawa co-authored with Wolfgang Gaissmaier. The figures shown in the main text can be reproduced by running `drawing_figures.R`. 
 
 ## Individual-based simulation (R)
 * R code found in the folder agentBasedSim will generate data used for Figure 1, 2, and 3. 
